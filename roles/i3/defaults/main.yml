@@ -1,0 +1,6 @@
+---
+
+i3_show_battery: false
+i3_status_disks:
+  - /
+  - /home

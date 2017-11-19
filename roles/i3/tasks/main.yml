@@ -1,0 +1,30 @@
+---
+
+- name: Install i3 and xorg
+  package:
+    name:
+      - i3-wm
+      - i3lock
+      - python-pip
+      - xorg-server
+      - xorg-xinit
+      - xorg-xrandr
+    state: present
+
+#- name: Install i3pystatus and dependencies
+#  pip:
+#    name: "{{ item }}"
+#    state: present
+#  with_items:
+#    - basiciw
+#    - i3pystatus
+#    - netifaces
+
+- name: Copy i3 config files
+  template:
+    src: "{{ item }}"
+    dest: "/etc/i3/{{ item }}"
+    backup: yes
+  with_items:
+    - config
+    - i3py.py
