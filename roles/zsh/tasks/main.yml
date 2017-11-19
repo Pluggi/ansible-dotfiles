@@ -1,0 +1,23 @@
+---
+
+- name: Install zsh
+  package:
+    name: zsh
+    state: latest
+
+- name: Set zsh as default shell for root
+  user:
+    name: root
+    shell: /bin/zsh
+
+- name: Copy grml-zshrc
+  copy:
+    src: grml-zshrc
+    dest: /etc/zsh/zshrc
+    backup: yes
+
+- name: Copy zshrc.local
+  copy:
+    src: zshrc
+    dest: /etc/zsh/zshrc.local
+    backup: yes
