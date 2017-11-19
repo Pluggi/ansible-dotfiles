@@ -1,0 +1,29 @@
+---
+
+- name: Install vim
+  package:
+    name: zsh
+    state: latest
+
+#- name: Install Vundle
+#  git:
+#    repo: https://github.com/VundleVim/Vundle.vim.git
+#    dest: "{{ item.value }}/.vim/bundle/Vundle.vim"
+#  with_dict: "{{ vim_vundle_users }}"
+#  when: vim_use_vundle
+
+- name: Copy vimrc
+  template:
+    src: vimrc
+    dest: "{{ item.value }}/.vimrc"
+    owner: "{{ item.key }}"
+    group: "{{ item.key }}"
+    backup: yes
+  with_dict: "{{ vim_vundle_users }}"
+  when: vim_use_vundle
+
+- name: Install Vundle plugins
+  command: vim +PluginInstall +qall
+  become: "{{ item }}"
+  with_items: "{{ vim_vundle_users }}"
+  when: vim_use_vundle
