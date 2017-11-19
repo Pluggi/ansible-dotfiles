@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  roles:
+    - { role: vim, tags: ["vim"] }
+    - { role: zsh, tags: ["zsh"] }
+
+- hosts: workstations
+  roles:
+    - { role: i3, tags: ["i3"] }

@@ -1,0 +1,8 @@
+---
+
+vim_use_vundle: true
+vim_vundle_users:
+  pluggi:
+    home: /home/pluggi
+
+i3_show_battery: true
